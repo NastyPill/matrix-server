@@ -5,6 +5,8 @@ import com.matrix.state.MatrixState;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MatrixController {
@@ -15,10 +17,9 @@ public class MatrixController {
         this.service = service;
     }
 
-    @GetMapping("/state")
-    public ResponseEntity<MatrixState> getState() {
-        service.invertState();
-        return ResponseEntity.ok(service.getState());
+    @GetMapping("/connect/{ip}")
+    public void getState(@PathVariable String ip) {
+        service.invertState(ip);
     }
 
 }
